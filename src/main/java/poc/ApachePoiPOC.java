@@ -2,6 +2,14 @@ package poc;
 
 import com.google.gson.Gson;
 import entity.Merchant;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
@@ -12,13 +20,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ApachePoiPOC {
     public static void main(String[] args) {
         FileInputStream file = null;
         DataFormatter formatter = new DataFormatter();
         try {
-            file = new FileInputStream(new File("C:\\temp\\ecTombamento.xlsx"));
+            file = new FileInputStream(new File("C:\\temp\\ecTomb.xlsx"));
 
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
@@ -51,11 +60,27 @@ public class ApachePoiPOC {
                     if(j == 6) {
                         merchant.setBankBranchDigit(formatter.formatCellValue(cell));
                     }
+                    merchant.setBankBranchAccountDigit("0");
+                    merchant.setMerchantName("teste");
                 }
                 merchants.add(merchant);
+                String json = new Gson().toJson(merchant);
+                    HttpClient httpClient = new DefaultHttpClient();
+                    HttpPost httpPost = new HttpPost("http://localhost:8080/bank-domicile/validation");
+                    httpPost.setHeader("Content-type", "application/json");
+                    try {
+                        StringEntity stringEntity = new StringEntity(json);
+                        httpPost.getRequestLine();
+                        httpPost.setEntity(stringEntity);
+
+                        HttpResponse httpResponse = httpClient.execute(httpPost);
+                        HttpEntity responseEntity = httpResponse.getEntity();
+                        String content = EntityUtils.toString(responseEntity);
+                        System.out.println(content);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
             }
-            String json = new Gson().toJson(merchants);
-            System.out.println(json);
         } catch (IOException e) {
             e.printStackTrace();
         }
