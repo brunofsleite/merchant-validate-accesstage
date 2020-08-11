@@ -29,7 +29,7 @@ public class ApachePoiPOC {
         FileInputStream file = null;
         DataFormatter formatter = new DataFormatter();
         try {
-            file = new FileInputStream(new File("C:\\temp\\ecTomb.xlsx"));
+            file = new FileInputStream(new File("C:\\temp\\ecTombamento.xlsx"));
 
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
@@ -68,12 +68,9 @@ public class ApachePoiPOC {
                 merchants.add(merchant);
                 String json = new Gson().toJson(merchant);
                     HttpClient httpClient = new DefaultHttpClient();
-                    //HttpPost httpPost = new HttpPost("http://localhost:8080/bank-domicile/validation");
-                    HttpPost httpPost = new HttpPost("https://bank-domicile-facade.hml.alelo-cloud.com/bank-domicile/validation");
+                    HttpPost httpPost = new HttpPost("http://localhost:8080/bank-domicile/validation");
                     httpPost.setHeader("Content-type", "application/json");
-                    httpPost.setHeader("X-IBM-Client-Id","7b6b18dc-8526-4823-bff5-7ff506e6e726");
-                    httpPost.setHeader("X-IBM-Client-Secret", "c4c538ff-816b-4e96-b030-cec42d5cddb6");
-                    httpPost.setHeader("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMTExMTExMTExMSIsImZpcnN0TmFtZSI6IlVzZXIgVGVzdCBBcnZDZW50cmFsIiwibGFzdE5hbWUiOiJUREkiLCJpYXQiOjE1OTcwOTc0NDksImV4cCI6MTU5NzcwMjI0OX0.njtE3zZSMMOwX00_-xideTZoapmAK-XtfYB3ekPX423eungK3kI1gEpPf0ni58fHJYUcBERO96l3F-MPGWktoA");
+
                     try {
                         StringEntity stringEntity = new StringEntity(json);
                         httpPost.getRequestLine();
@@ -90,7 +87,7 @@ public class ApachePoiPOC {
                         cell.setCellType(Cell.CELL_TYPE_STRING);
                         cell.setCellValue(content);
 
-                        FileOutputStream fos = new FileOutputStream("C:\\temp\\ecTomb.xlsx");
+                        FileOutputStream fos = new FileOutputStream("C:\\temp\\ecTombamento.xlsx");
                         workbook.write(fos);
                         fos.close();
 
