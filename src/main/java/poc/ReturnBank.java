@@ -17,12 +17,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.*;
 import java.util.ArrayList;
 
-public class ApachePoiPOC2 {
+public class ReturnBank {
     public static void main(String[] args) {
         FileInputStream file = null;
         DataFormatter formatter = new DataFormatter();
         try {
-            file = new FileInputStream(new File("C:\\temp\\ecTomb.xlsx"));
+            file = new FileInputStream(new File("C:\\temp\\ecTomb2.xlsx"));
 
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
@@ -61,7 +61,7 @@ public class ApachePoiPOC2 {
                     cell.setCellType(Cell.CELL_TYPE_STRING);
                     cell.setCellValue(content);
 
-                    FileOutputStream fos = new FileOutputStream("C:\\temp\\ecTomb.xlsx");
+                    FileOutputStream fos = new FileOutputStream("C:\\temp\\ecTomb2.xlsx");
                     workbook.write(fos);
                     fos.close();
 
