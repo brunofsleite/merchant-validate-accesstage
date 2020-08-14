@@ -83,17 +83,3 @@ public class Merchant {
         this.merchantName = merchantName;
     }
 }
-
-/*
-{
-    "documentNumber": "34145292000172",
-    "account": "392",
-    "accountDigit": "0",
-    "bank": "1",
-    "bankBranch": "416711",
-    "bankBranchAccountDigit": "0",
-    "bankBranchDigit": "0",
-    "documentType": "2",
-    "merchantName": "HOTEL POUSO REAL LTDA"
-}
- */

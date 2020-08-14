@@ -29,7 +29,7 @@ public class SentBank {
         FileInputStream file = null;
         DataFormatter formatter = new DataFormatter();
         try {
-            file = new FileInputStream(new File("C:\\temp\\ecTomb2.xlsx"));
+            file = new FileInputStream(new File("C:\\temp\\ECsTombamentoProd2.xlsx"));
 
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
@@ -87,7 +87,7 @@ public class SentBank {
                         cell.setCellType(Cell.CELL_TYPE_STRING);
                         cell.setCellValue(content);
 
-                        FileOutputStream fos = new FileOutputStream("C:\\temp\\ecTomb2.xlsx");
+                        FileOutputStream fos = new FileOutputStream("C:\\temp\\ECsTombamentoProd2.xlsx");
                         workbook.write(fos);
                         fos.close();
 
