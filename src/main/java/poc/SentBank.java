@@ -29,7 +29,8 @@ public class SentBank {
         FileInputStream file = null;
         DataFormatter formatter = new DataFormatter();
         try {
-            file = new FileInputStream(new File("C:\\temp\\ECsTombamentoProd2.xlsx"));
+            file = new FileInputStream(new File("C:\\testes-accesstage-com-gabi\\accesstage-bancos.xlsx"));
+
 
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
@@ -42,7 +43,10 @@ public class SentBank {
                 Row row = sheet.getRow(i);
                 for(int j=row.getFirstCellNum();j<=row.getLastCellNum();j++){
                     Cell cell = row.getCell(j);
-                    merchant.setBank("1"); // Banco do Brasil
+                    if(j == 4) {
+                        merchant.setBank(formatter.formatCellValue(cell));
+                    }
+                    //merchant.setBank("1"); // Banco do Brasil
                     merchant.setDocumentType("2");
                     if(j == 0) {
                         merchant.setDocumentNumber(formatter.formatCellValue(cell));
@@ -87,7 +91,7 @@ public class SentBank {
                         cell.setCellType(Cell.CELL_TYPE_STRING);
                         cell.setCellValue(content);
 
-                        FileOutputStream fos = new FileOutputStream("C:\\temp\\ECsTombamentoProd2.xlsx");
+                        FileOutputStream fos = new FileOutputStream("C:\\testes-accesstage-com-gabi\\accesstage-bancos.xlsx");
                         workbook.write(fos);
                         fos.close();
 

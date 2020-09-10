@@ -22,7 +22,7 @@ public class ReturnBank {
         FileInputStream file = null;
         DataFormatter formatter = new DataFormatter();
         try {
-            file = new FileInputStream(new File("C:\\temp\\ECsTombamentoProd-semRetorno.xlsx"));
+            file = new FileInputStream(new File("C:\\testes-accesstage-com-gabi\\accesstage-bancos.xlsx"));
 
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
@@ -61,7 +61,7 @@ public class ReturnBank {
                     cell.setCellType(Cell.CELL_TYPE_STRING);
                     cell.setCellValue(content);
 
-                    FileOutputStream fos = new FileOutputStream("C:\\temp\\ECsTombamentoProd-semRetorno.xlsx");
+                    FileOutputStream fos = new FileOutputStream("C:\\testes-accesstage-com-gabi\\accesstage-bancos.xlsx");
                     workbook.write(fos);
                     fos.close();
 

@@ -19,7 +19,7 @@ public class FormatterResponse {
         FileInputStream file = null;
         DataFormatter formatter = new DataFormatter();
         try {
-            file = new FileInputStream(new File("C:\\temp\\ECsTombamentoProd2.xlsx"));
+            file = new FileInputStream(new File("C:\\testes-accesstage-com-gabi\\accesstage-bancos.xlsx"));
 
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
@@ -41,7 +41,7 @@ public class FormatterResponse {
                     cell.setCellType(Cell.CELL_TYPE_STRING);
                     cell.setCellValue(Integer.parseInt(validateBank.getId()));
 
-                    FileOutputStream fos = new FileOutputStream("C:\\temp\\ECsTombamentoProd2.xlsx");
+                    FileOutputStream fos = new FileOutputStream("C:\\testes-accesstage-com-gabi\\accesstage-bancos.xlsx");
                     workbook.write(fos);
                     fos.close();
 
